@@ -97,7 +97,50 @@ Enabled DNS Forwarding in pfSense:
 
 ## Evidence:
 
-(Screenshots)
+### 1. Initial Failure - No Network Connectivity
+The system was unable to access external resources, indicating a potential network or DNS issue.
+
+![No Network Connectivity](Images/No-network-connectivity.jpg)
+
+### 2. Browser Error Confirms Issue
+Attempting to access websites resulted in failure, reinforcing that name resolution or outbound connectivity was broken.
+
+![Brwoser Error](Images/No-internet-browser-error.jpg)
+
+### 3. Network Interface Verification
+The System's network interface appears correctly configured, ruling out basic interface misconfiguration.
+
+![Network Interface](Images/Network-interface-details.jpg)
+
+### 4. DNS Query Failure (dig)
+Direct DNS queries to Google's DNS server (8.8.8.8) failed, indicating DNS resolution was not functioning properly. ()
+
+![dig failure](Images/dig-google-failure.jpg)
+
+### 5. DNS Timeout to Upstream Server
+A timeout when querying 8.8.8.8 suggests that DNS requests were not successfully reaching or returning from the upstream server.
+
+![dig timeout](Images/dig-google-8.8.8.8-timeout.jpg)
+
+### 6. Packet Capture Analysis
+Packet capture shows DNS queries being sent but not properly resolved, indicating failure in forwarding or response handling.
+
+![Packet Capture](Images/DNS-packet-capture-analysis.jpg)
+
+### 7. Root Cause - pfSense DNS Forwarding Disabled
+Investigation revealed that pfSense was not forwarding DNS queries to upstream servers. DNS forwarding being disabled caused queries to fail despite proper network configuration.
+
+![pfSense DNS Forwarding Disabled](Images/IMG_5749.jpeg)
+
+### 8. Network Connectivity Restored
+After enabling DNS forwarding on pfSense, DNS resolution and internet access were successfully restored.
+
+![Network Restored](Images/IMG_5751.jpeg)
+
+### 9. Resolution After Fix
+After Correcting the issue, DNS resolution and internet access were restored successfully.
+
+![Success](Images/Youtube-access-success.jpg)
 
 ---
 
